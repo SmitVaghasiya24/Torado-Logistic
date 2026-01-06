@@ -1,0 +1,53 @@
+import jwt from "jsonwebtoken";
+
+export const verifyToken = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return res.status(401).json({
+      success: false,
+      message: "Unauthorized",
+    });
+  }
+
+  const token = authHeader.split(" ")[1];
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    console.log("DECODED TOKEN:", decoded);
+
+    req.admin_id = decoded.admin_id;
+    req.admin_role = decoded.role;
+    req.admin_status = decoded.status;
+    req.scope = decoded.scope || null;
+
+    next();
+  } catch (error) {
+    console.error("JWT ERROR:", error.message);
+    return res.status(401).json({
+      success: false,
+      message: "Unauthorized",
+    });
+  }
+};
+
+
+
+export const isSuperadmin = (req, res, next) => {
+  if (req.admin_role !== "superadmin") {
+    return res.status(403).json({ message: "Access denied. Only superadmin allowed." });
+  }
+  next();
+};
+
+
+export const isRejectedAdmin = (req, res, next) => {
+  if (req.admin_status !== "rejected") {
+    return res.status(403).json({
+      success: false,
+      message: "Only rejected admins can perform this action",
+    });
+  }
+  next();
+};
