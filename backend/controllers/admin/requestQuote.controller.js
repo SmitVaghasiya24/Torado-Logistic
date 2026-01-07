@@ -1,8 +1,8 @@
-import { getAllRequestQuotes, updateRequestQuoteStatus } from "../../models/requestQuote.model.js";
+import { updateRequestQuoteStatusService, getAllRequestQuotesService } from "../../services/admin/requestQuote/index.js";
 
 export const getAllRequestQuotesController = async (req, res, next) => {
     try {
-        const quotes = await getAllRequestQuotes();
+        const quotes = await getAllRequestQuotesService();
 
         return res.status(200).json({
             success: true,
@@ -22,32 +22,19 @@ export const updateRequestQuoteStatusController = async (req, res, next) => {
     try {
         const { id } = req.params;
         const { status } = req.body;
-
-        const allowedStatus = ["pending", "contacted", "closed"];
-
-        if (!id) {
-            return res.status(400).json({
-                success: false,
-                message: "Quote ID is required",
-            });
-        }
-
-        if (!status || !allowedStatus.includes(status)) {
-            return res.status(400).json({
-                success: false,
-                message: "Invalid status value",
-            });
-        }
-
         const updatedBy = req.admin_id || null;
 
-        await updateRequestQuoteStatus(id, status, updatedBy);
+        const result = await updateRequestQuoteStatusService(
+            id,
+            status,
+            updatedBy
+        );
 
         return res.status(200).json({
             success: true,
             message: "Quote status updated successfully",
-            id: Number(id),
-            status,
+            id: result.id,
+            status: result.status,
         });
 
     } catch (error) {

@@ -1,35 +1,36 @@
 import jwt from "jsonwebtoken";
 
 export const verifyToken = (req, res, next) => {
-  const authHeader = req.headers.authorization;
+    const authHeader = req.headers.authorization;
 
-  if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    return res.status(401).json({
-      success: false,
-      message: "Unauthorized",
-    });
-  }
+    // 🔹 Missing token
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+        return res.status(401).json({
+            success: false,
+            message: "Token missing",
+        });
+    }
 
-  const token = authHeader.split(" ")[1];
+    const token = authHeader.split(" ")[1];
 
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    console.log("DECODED TOKEN:", decoded);
+        req.admin_id = decoded.admin_id;
+        req.admin_role = decoded.role;
+        req.admin_status = decoded.status;
+        req.scope = decoded.scope || null;
 
-    req.admin_id = decoded.admin_id;
-    req.admin_role = decoded.role;
-    req.admin_status = decoded.status;
-    req.scope = decoded.scope || null;
+        next();
+    } catch (error) {
+        console.error("JWT ERROR:", error.message);
 
-    next();
-  } catch (error) {
-    console.error("JWT ERROR:", error.message);
-    return res.status(401).json({
-      success: false,
-      message: "Unauthorized",
-    });
-  }
+        // 🔹 Invalid / expired token
+        return res.status(401).json({
+            success: false,
+            message: "Invalid or expired token",
+        });
+    }
 };
 
 
