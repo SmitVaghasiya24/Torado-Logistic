@@ -1,0 +1,1 @@
+export { getActiveFaqsService } from './getActiveFaqs.service.js'

@@ -1,0 +1,1 @@
+export {getPageBySlugService} from '../../user/page/getPageBySlug.service.js';

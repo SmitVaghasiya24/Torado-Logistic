@@ -7,6 +7,6 @@ import authorize from "../../middlewares/authorizeRole.js";
 const router = Router();
 
 router.get("/quotes", getAllRequestQuotesController);
-router.patch("/quote/:id/status", verifyToken, authorize(["superadmin", "admin"]), updateRequestQuoteStatusController);
+router.patch("/quote/:id/status", verifyToken, authorize(["superadmin", "admin","content_manager"]),  updateRequestQuoteStatusController);
 
 export default router;
