@@ -17,7 +17,6 @@ export const addContactEnquiry = async (data) => {
 };
 
 
-
 export const getContactEnquiriesAdmin = async () => {
     const [rows] = await db.execute(
         "CALL sp_get_contact_enquiries_admin()"

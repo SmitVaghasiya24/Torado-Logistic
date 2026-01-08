@@ -1,0 +1,23 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="60" cy="60" r="54" fill="#FAF7F2" stroke="#EFE7DA" stroke-width="4"></circle>
+
+  <!-- Truck Body -->
+  <rect x="30" y="48" width="40" height="22" rx="3" fill="#57B56A"></rect>
+
+  <!-- Truck Cabin -->
+  <path d="M70 52H82L88 58V70H70V52Z" fill="#57B56A"></path>
+
+  <!-- Window -->
+  <rect x="74" y="56" width="8" height="6" rx="1" fill="#EAF6EC"></rect>
+
+  <!-- Wheels -->
+  <circle cx="38" cy="72" r="5" fill="#57B56A"></circle>
+  <circle cx="38" cy="72" r="2" fill="#FAF7F2"></circle>
+
+  <circle cx="56" cy="72" r="5" fill="#57B56A"></circle>
+  <circle cx="56" cy="72" r="2" fill="#FAF7F2"></circle>
+
+  <circle cx="78" cy="72" r="5" fill="#57B56A"></circle>
+  <circle cx="78" cy="72" r="2" fill="#FAF7F2"></circle>
+</svg>

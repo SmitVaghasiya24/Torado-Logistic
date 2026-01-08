@@ -28,6 +28,8 @@ app.get("/", (req, res) => {
 
 app.use('/api',router)
 
+app.use('/uploads', express.static('uploads'));
+
 
 app.use(errorHandler);
 
