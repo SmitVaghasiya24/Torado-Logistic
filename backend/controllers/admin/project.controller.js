@@ -60,33 +60,11 @@ export const updateProjectController = async (req, res, next) => {
     try {
         const { id } = req.params;
 
-        const existingProject = await getProjectById(id);
-        if (!existingProject) {
-            throw new AppError("Project not found", 404);
-        }
-
-        let thumbnailPath = existingProject.thumbnail;
-
-        if (req.file) {
-            const newPath = req.file.path.replace(/\\/g, "/");
-
-            if (existingProject.thumbnail) {
-                const oldImagePath = path.join(
-                    process.cwd(),
-                    existingProject.thumbnail
-                );
-
-                if (fs.existsSync(oldImagePath)) {
-                    fs.unlinkSync(oldImagePath);
-                }
-            }
-
-            thumbnailPath = newPath;
-        }
-
         const payload = {
             ...req.body,
-            thumbnail: thumbnailPath,
+            thumbnail: req.file
+                ? req.file.path.replace(/\\/g, "/")
+                : null,
         };
 
         const result = await updateProjectService(
@@ -100,7 +78,9 @@ export const updateProjectController = async (req, res, next) => {
             message: "Project updated successfully",
             data: {
                 ...result,
-                thumbnail: `${req.protocol}://${req.get("host")}/${thumbnailPath}`,
+                thumbnail: result.thumbnail
+                    ? `${req.protocol}://${req.get("host")}/${result.thumbnail}`
+                    : null,
             },
         });
     } catch (error) {

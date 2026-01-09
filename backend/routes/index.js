@@ -10,6 +10,8 @@ import projectUserRoutes from './user/project.routes.js'
 import blogUserCategory from './user/blogCategory.routes.js'
 import blogTagUserRoutes from './user/blogTag.routes.js'
 import serviceUserRoutes from './user/service.routes.js'
+import blogUserRoutes from './user/blog.routes.js'
+import blogCommentUserRoutes from './user/blogComment.routes.js'
 
 
 import adminQuoteRoutes from "./admin/requestQuote.routes.js";
@@ -23,6 +25,8 @@ import projetRoutes from './admin/project.routes.js';
 import blogCategoryRoutes from './admin/blogCategory.routes.js';
 import blogTagRoutes from './admin/blogTag.routes.js';
 import serviceRoutes from './admin/service.routes.js';
+import blogRoutes from './admin/blog.route.js';
+import blogCommentRoutes from './admin/blogComment.routes.js';
 
 const router = express.Router();
 
@@ -37,6 +41,8 @@ router.use("/user", projectUserRoutes);
 router.use("/user", blogUserCategory);
 router.use("/user", blogTagUserRoutes);
 router.use("/user", serviceUserRoutes);
+router.use("/user", blogUserRoutes);
+router.use("/user", blogCommentUserRoutes);
 
 
 router.use("/admin", adminQuoteRoutes);
@@ -50,6 +56,8 @@ router.use("/admin", projetRoutes);
 router.use("/admin", blogCategoryRoutes);
 router.use("/admin", blogTagRoutes);
 router.use("/admin", serviceRoutes);
+router.use("/admin", blogRoutes);
+router.use("/admin", blogCommentRoutes);
 
 
 export default router;

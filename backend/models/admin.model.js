@@ -78,3 +78,15 @@ export const resubmitAdmin = async (adminId) => {
     );
     return result;
 };
+
+
+
+
+export const getAdminNameById = async (adminId) => {
+    const [rows] = await db.execute(
+        "SELECT name FROM tbl_admins WHERE admin_id = ? LIMIT 1",
+        [adminId]
+    );
+
+    return rows?.[0]?.name || "Admin";
+};

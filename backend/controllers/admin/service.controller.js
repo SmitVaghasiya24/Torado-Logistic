@@ -1,8 +1,8 @@
 import AppError from "../../utils/AppError.js";
-import { addServiceService, getServicesAdminService, updateServiceService,deleteServiceService,updateServiceStatusService } from "../../services/admin/service/index.js";
+import { addServiceService, getServicesAdminService, updateServiceService, deleteServiceService, updateServiceStatusService } from "../../services/admin/service/index.js";
 import fs from "fs";
 import path from "path";
-import { getServiceById } from '../../models/service.model.js'
+
 
 export const addServiceController = async (req, res, next) => {
     try {
@@ -81,38 +81,14 @@ export const updateServiceController = async (req, res, next) => {
     try {
         const { id } = req.params;
 
-        const existing = await getServiceById(id);
-        if (!existing) throw new AppError("Service not found", 404);
-
-        let bannerImagePath = existing.banner_image;
-        let thumbnailPath = existing.thumbnail;
-
-        if (req.files?.banner_image) {
-            const newPath = req.files.banner_image[0].path.replace(/\\/g, "/");
-
-            if (existing.banner_image) {
-                const oldPath = path.join(process.cwd(), existing.banner_image);
-                if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
-            }
-
-            bannerImagePath = newPath;
-        }
-
-        if (req.files?.thumbnail) {
-            const newPath = req.files.thumbnail[0].path.replace(/\\/g, "/");
-
-            if (existing.thumbnail) {
-                const oldPath = path.join(process.cwd(), existing.thumbnail);
-                if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
-            }
-
-            thumbnailPath = newPath;
-        }
-
         const payload = {
             ...req.body,
-            banner_image: bannerImagePath,
-            thumbnail: thumbnailPath,
+            banner_image: req.files?.banner_image
+                ? req.files.banner_image[0].path.replace(/\\/g, "/")
+                : null,
+            thumbnail: req.files?.thumbnail
+                ? req.files.thumbnail[0].path.replace(/\\/g, "/")
+                : null,
         };
 
         const result = await updateServiceService(
@@ -126,11 +102,11 @@ export const updateServiceController = async (req, res, next) => {
             message: "Service updated successfully",
             data: {
                 ...result,
-                banner_image: bannerImagePath
-                    ? `${req.protocol}://${req.get("host")}/${bannerImagePath}`
+                banner_image: result.banner_image
+                    ? `${req.protocol}://${req.get("host")}/${result.banner_image}`
                     : null,
-                thumbnail: thumbnailPath
-                    ? `${req.protocol}://${req.get("host")}/${thumbnailPath}`
+                thumbnail: result.thumbnail
+                    ? `${req.protocol}://${req.get("host")}/${result.thumbnail}`
                     : null,
             },
         });
