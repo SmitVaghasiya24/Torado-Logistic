@@ -36,7 +36,7 @@ function BlogDetails() {
         <>
             <Breadcrumb title="Blog Details" />
 
-            <div div className="px-3 lg:px-0">
+            <div className="px-3 xl:px-0">
                 <section className="py-14">
                     <div className="wrapper">
 
@@ -44,7 +44,7 @@ function BlogDetails() {
 
                             {/* right */}
                             <div className="lg:col-span-1">
-                                <BlogSidebar/>
+                                <BlogSidebar currentSlug={slug} />
                             </div>
 
 
@@ -104,7 +104,6 @@ function BlogDetails() {
                                     </div>
 
                                 </div>
-
 
                                 <div>
                                     <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">

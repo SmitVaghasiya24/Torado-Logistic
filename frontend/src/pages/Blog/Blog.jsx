@@ -33,7 +33,7 @@ function Blog() {
     return (
         <>
             <Breadcrumb title="Our Blog" />
-            <div div className="px-3 lg:px-0">
+            <div className="px-3 xl:px-0">
                 <section className="py-16">
                     <div className="wrapper">
 

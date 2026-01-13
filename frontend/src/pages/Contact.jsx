@@ -3,7 +3,7 @@ import Breadcrumb from "../components/Breadcrumb";
 import axios from "axios";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import ContactEnquiryForm from "../components/ContactEnquiryForm";
+import AskQuestion from "../components/AskQuestion";
 
 function Contact() {
     const [contactData, setContactData] = useState([]);
@@ -53,7 +53,7 @@ function Contact() {
         <>
             <Breadcrumb title="Contact" />
 
-            <div div className="px-3 lg:px-0">
+            <div className="px-3 xl:px-0">
 
                 <section className="py-8 sm:py-10 md:py-12">
                     <div className="wrapper grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
@@ -176,27 +176,7 @@ function Contact() {
 
                 </section>
 
-                <section className="py-8 sm:py-10 md:py-12">
-                    <div className=" grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-
-                        <div className="w-full h-full">
-                            <img
-                                src="/supply.jpg"
-                                alt="Contact Enquiry"
-                                className="w-full h-full object-cover rounded-lg"
-                            />
-                        </div>
-
-                        <div className="bg-[#F3F5F6] p-6 sm:p-8 md:p-18 rounded-lg shadow-sm">
-                            <h2 className="text-2xl md:text-4xl font-bold mb-6">
-                                Haven’t Got Your Answer? <br /> Ask Here...
-                            </h2>
-
-                            <ContactEnquiryForm />
-                        </div>
-
-                    </div>
-                </section>
+                <AskQuestion />
 
             </div>
         </>

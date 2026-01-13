@@ -122,3 +122,34 @@
   transform: translateY(-4px);
 }
 
+@keyframes float-vertical {
+    0% {
+        transform: translateY(-20px);
+    }
+    50% {
+        transform: translateY(20px);
+    }
+    100% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes float-horizontal {
+    0% {
+        transform: translateX(-20px);
+    }
+    50% {
+        transform: translateX(20px);
+    }
+    100% {
+        transform: translateX(-20px);
+    }
+}
+
+.animate-float-vertical {
+    animation: float-vertical 6s ease-in-out infinite;
+}
+
+.animate-float-horizontal {
+    animation: float-horizontal 6s ease-in-out infinite;
+}

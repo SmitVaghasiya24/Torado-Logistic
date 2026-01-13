@@ -36,7 +36,6 @@ function ContactEnquiryForm() {
 
             toast.success("Message sent successfully");
 
-            // reset form
             setFormData({
                 name: "",
                 email: "",
@@ -101,7 +100,6 @@ function ContactEnquiryForm() {
                 I agree to all Terms & Conditions
             </label>
 
-            {/* Glitch Button */}
             <GlitchButton
                 type="submit"
                 className="px-8 py-4 text-base bg-[#FB695E] text-white hover:bg-[#3CB879] shadow-[0_4px_15px_rgba(251,105,94,0.35)] transition-colors duration-300 ease-in-out"

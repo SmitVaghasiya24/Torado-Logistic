@@ -1,0 +1,26 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Soft Circle -->
+  <circle cx="54" cy="40" r="20" stroke="#EADFC8" stroke-width="2"></circle>
+
+  <!-- Forklift Body -->
+  <rect x="12" y="36" width="22" height="12" rx="3" fill="#F36A5A"></rect>
+
+  <!-- Cabin -->
+  <rect x="18" y="28" width="10" height="10" rx="2" fill="#F36A5A"></rect>
+
+  <!-- Mast -->
+  <rect x="34" y="24" width="3" height="30" rx="1.5" fill="#F36A5A"></rect>
+
+  <!-- Fork -->
+  <rect x="37" y="46" width="10" height="3" rx="1.5" fill="#F36A5A"></rect>
+
+  <!-- Box -->
+  <rect x="40" y="30" width="14" height="14" rx="2" fill="#F36A5A"></rect>
+
+  <!-- Box Cross Lines -->
+  <path d="M40 30 L54 44 M54 30 L40 44" stroke="white" stroke-width="1.5"></path>
+
+  <!-- Wheels -->
+  <circle cx="18" cy="52" r="4" fill="#F36A5A"></circle>
+  <circle cx="30" cy="52" r="4" fill="#F36A5A"></circle>
+</svg>

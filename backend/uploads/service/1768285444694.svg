@@ -1,0 +1,25 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer Circle -->
+  <circle cx="40" cy="40" r="28" stroke="#EADFC8" stroke-width="2"></circle>
+
+  <!-- Top Arrow -->
+  <path d="M40 8 L45 14 H42 V22 H38 V14 H35 L40 8 Z" fill="#F4C430"></path>
+
+  <!-- Bottom Arrow -->
+  <path d="M40 72 L35 66 H38 V58 H42 V66 H45 L40 72 Z" fill="#F4C430"></path>
+
+  <!-- Left Arrow -->
+  <path d="M8 40 L14 35 V38 H22 V42 H14 V45 L8 40 Z" fill="#F4C430"></path>
+
+  <!-- Right Arrow -->
+  <path d="M72 40 L66 45 V42 H58 V38 H66 V35 L72 40 Z" fill="#F4C430"></path>
+
+  <!-- Cube Top -->
+  <polygon points="40,26 52,32 40,38 28,32" fill="#F4C430"></polygon>
+
+  <!-- Cube Left -->
+  <polygon points="28,32 28,46 40,52 40,38" fill="#E6B800"></polygon>
+
+  <!-- Cube Right -->
+  <polygon points="52,32 52,46 40,52 40,38" fill="#FFD966"></polygon>
+</svg>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { FiChevronDown } from "react-icons/fi";
 import GlitchButton from "../components/GlitchButton";
+import Navitems from "./Navitems";
 
 function Navbar() {
     const [showSticky, setShowSticky] = useState(false);
@@ -19,53 +19,26 @@ function Navbar() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const navLinkClass = ({ isActive }) =>
-        `flex items-center gap-1 transition ${isActive ? "text-[#F15A40]" : "text-gray-800 hover:text-[#F15A40]"
-        }`;
+
 
 
     return (
         <header
-            className={`
-        w-full bg-white z-50 shadow-md
-        transition-transform duration-300 ease-in-out
-        ${showSticky ? "fixed top-0 shadow-md translate-y-0" : "relative translate-y-0"}
-      `}
+            className={`w-full bg-white z-50 transition-transform duration-300 ease-in-out
+        ${showSticky
+                    ? "fixed top-0 translate-y-0 shadow-[0_10px_30px_rgba(0,0,0,0.08)]"
+                    : "relative translate-y-0 shadow-[0_4px_20px_rgba(0,0,0,0.05)]"
+                }`
+            }
         >
+
             <div className="wrapper flex items-center justify-between h-20">
 
                 <div className="flex items-center gap-3">
                     <img src="/black-logo.svg" alt="Torado" className="h-12" />
                 </div>
 
-                <nav className="hidden lg:flex items-center gap-8 text-[15px] font-medium">
-
-                    <NavLink to="/" className={navLinkClass}>
-                        Home 
-                    </NavLink>
-
-                    <NavLink to="/about" className={navLinkClass}>
-                        About Us
-                    </NavLink>
-
-                    <NavLink to="/services" className={navLinkClass}>
-                        Services <FiChevronDown size={14} />
-                    </NavLink>
-
-                    <NavLink to="/pages" className={navLinkClass}>
-                        Pages <FiChevronDown size={14} />
-                    </NavLink>
-
-                    <NavLink to="/our-blog" className={navLinkClass}>
-                        Blog <FiChevronDown size={14} />
-                    </NavLink>
-
-                    <NavLink to="/contact" className={navLinkClass}>
-                        Contact Us
-                    </NavLink>
-
-                </nav>
-
+                <Navitems />
 
                 <div className="hidden lg:block">
                     <NavLink to="/request-quote">

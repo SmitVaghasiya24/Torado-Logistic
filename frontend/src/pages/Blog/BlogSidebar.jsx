@@ -3,7 +3,8 @@ import { useNavigate, useSearchParams, Link } from "react-router-dom";
 import axios from "axios";
 import { FiSearch } from "react-icons/fi";
 import GlitchButton from "../../components/GlitchButton";
-function BlogLeft() {
+import LetUsKnow from "../../components/LetUsKnow";
+function BlogSidebar({ currentSlug }) {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
 
@@ -13,6 +14,8 @@ function BlogLeft() {
 
     const [categories, setCategories] = useState([]);
     const [tags, setTags] = useState([]);
+    const [latestBlogs, setLatestBlogs] = useState([]);
+
 
     useEffect(() => {
         const fetchSidebarData = async () => {
@@ -45,6 +48,29 @@ function BlogLeft() {
 
         fetchSidebarData();
     }, []);
+
+    useEffect(() => {
+        const fetchLatestBlogs = async () => {
+            try {
+                const res = await axios.get(
+                    "http://localhost:5000/api/user/get_blogs?limit=4"
+                );
+
+                const filtered = res.data.data
+                    .filter((b) => b.slug !== currentSlug)
+                    .slice(0, 3);
+
+                setLatestBlogs(filtered);
+            } catch (error) {
+                console.error("Latest blogs error", error);
+            }
+        };
+
+        if (currentSlug) {
+            fetchLatestBlogs();
+        }
+    }, [currentSlug]);
+
 
 
     const handleSearch = () => {
@@ -95,6 +121,47 @@ function BlogLeft() {
                 </ul>
             </div>
 
+            {latestBlogs.length > 0 && (
+                <div className="bg-[#F3F5F6] rounded-lg p-6">
+                    <h3 className="text-xl font-bold mb-6">
+                        Latest Articles
+                    </h3>
+
+                    <div className="space-y-6">
+                        {latestBlogs.map((item) => (
+                            <Link
+                                key={item.id}
+                                to={`/blog/${item.slug}`}
+                                className="flex items-start gap-4 group"
+                            >
+                                <img
+                                    src={item.thumbnail}
+                                    alt={item.title}
+                                    className="w-16 h-16 object-cover rounded"
+                                />
+
+                                <div>
+                                    <span className="block text-xs text-[#FB695E] mb-1">
+                                        {new Date(item.published_date).toLocaleDateString("en-GB", {
+                                            day: "2-digit",
+                                            month: "short",
+                                            year: "numeric",
+                                        })}
+                                    </span>
+
+                                    <p className="text-sm font-medium text-gray-900 group-hover:text-[#FB695E] transition">
+                                        {item.title.length > 55
+                                            ? item.title.slice(0, 55) + "..."
+                                            : item.title}
+                                    </p>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+            )}
+
+
             <div className="bg-[#F3F5F6] rounded-lg p-6">
                 <h3 className="text-xl font-bold mb-4">Tags</h3>
 
@@ -111,41 +178,10 @@ function BlogLeft() {
                 </div>
             </div>
 
-              <div className="relative overflow-hidden rounded-xl bg-[#FB695E] p-8 text-white">
-
-             <img
-                src="/Shapes/hero-shape6.png"
-                alt=""
-                className="hidden lg:block absolute top-24 z-50 right-[20%] w-6 pointer-events-none"
-            />
-
-            <img
-                src="/Shapes/hero-shape5.png"
-                alt=""
-                className="hidden lg:block absolute bottom-10 z-50 right-[30%] w-8 pointer-events-none"
-            />
-
-            <h3 className="text-3xl font-bold leading-snug mb-4">
-                How Can We Help You <br /> Let Us Know?
-            </h3>
-
-            <p className="text-white/90 text-base leading-relaxed mb-8">
-                We understand the importance of approaching each work integrally
-                and believe in the power of simple and easy communication.
-            </p>
-
-           <Link to="/contact">
-                <GlitchButton
-                    className="px-6 py-3 bg-black text-white hover:bg-green-700 transition"
-                >
-                    Contact Us
-                </GlitchButton>
-            </Link>
-
-        </div>
+            <LetUsKnow/>
 
         </div>
     );
 }
 
-export default BlogLeft;
+export default BlogSidebar;

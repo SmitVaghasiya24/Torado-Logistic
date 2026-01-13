@@ -1,0 +1,24 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Soft Circle -->
+  <circle cx="52" cy="40" r="20" stroke="#EADFC8" stroke-width="2"></circle>
+
+  <!-- Package Box -->
+  <rect x="26" y="12" width="20" height="20" rx="5" fill="#2F6BFF"></rect>
+
+  <!-- Up Arrow -->
+  <path d="M36 16 L31.5 20.5 H34 V28 H38 V20.5 H40.5 L36 16 Z" fill="white"></path>
+
+  <!-- Hand (smooth & natural) -->
+  <path d="M12 46
+       C12 43 15 41 18 41
+       H30
+       C34 41 37 43 39 46
+       L42 50
+       C43 52 41 54 38 54
+       H20
+       C17 54 14 52.5 13 50.5
+       C12.5 49.5 12 48 12 46 Z" fill="#2F6BFF"></path>
+
+  <!-- Wrist -->
+  <rect x="10" y="46" width="10" height="12" rx="4" fill="#2F6BFF"></rect>
+</svg>
