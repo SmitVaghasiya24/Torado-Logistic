@@ -47,13 +47,11 @@
   z-index: 1;
 }
 
-/* Hover trigger */
 .glitch-btn:hover::after {
   animation: glitch 0.9s steps(2, end);
   opacity: 1;
 }
 
-/* Animation */
 @keyframes glitch {
   0% {
     clip-path: var(--slice-1);

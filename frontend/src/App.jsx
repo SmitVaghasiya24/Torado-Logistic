@@ -4,6 +4,9 @@ import { Toaster } from "sonner";
 import Home from './pages/Home';
 import Layout from './components/Layout';
 import GetQuote from './pages/GetQuote';
+import Contact from './pages/Contact';
+import Blog from './pages/Blog/Blog';
+import BlogDetails from './pages/Blog/BlogDetails';
 
 function App() {
 
@@ -21,6 +24,9 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route  element={<Home />} />
             <Route path='/request-quote'  element={<GetQuote />} />
+            <Route path='/contact'  element={<Contact />} />
+            <Route path='/our-blog'  element={<Blog />} />
+            <Route path='/blog/:slug'  element={<BlogDetails />} />
           </Route>
         </Routes>
       </BrowserRouter>
