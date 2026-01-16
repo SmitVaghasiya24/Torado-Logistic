@@ -161,7 +161,6 @@ function BlogSidebar({ currentSlug }) {
                 </div>
             )}
 
-
             <div className="bg-[#F3F5F6] rounded-lg p-6">
                 <h3 className="text-xl font-bold mb-4">Tags</h3>
 

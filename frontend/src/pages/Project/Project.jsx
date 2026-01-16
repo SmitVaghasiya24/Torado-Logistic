@@ -32,7 +32,7 @@ function Project() {
         <>
             <Breadcrumb title="Projects" />
 
-            <section className="py-16">
+            <section className="py-16 px-3 xl:px-0">
                 <div className="wrapper">
                     <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
                         Our Successful Projects
@@ -67,7 +67,7 @@ function Project() {
                                         </p>
 
                                         <Link
-                                            to={`/projects/${project.slug}`}
+                                            to={`/project-details/${project.slug}`}
                                             className="inline-flex items-center gap-2 text-[#3B6EF5] font-semibold transition-all duration-300 hover:gap-3 "
                                         >
                                             Learn More

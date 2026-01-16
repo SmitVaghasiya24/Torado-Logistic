@@ -27,18 +27,23 @@ function Navitems() {
         item.isActive(location.pathname)
     );
 
+const pagesMenu = [
+  { label: "Our Projects", path: "/projects", match: "/projects" },
+  {
+    label: "Project Details",
+    path: "/project-details/warehouse-expansion-and-optimization-project-enhancing-storage-capacity-and-efficiency",
+    match: "/project-details"
+  },
+  { label: "FAQ", path: "/faq", match: "/faq" },
+  { label: "Testimonials", path: "/testimonials", match: "/testimonials" },
+  { label: "Get A Quote", path: "/request-quote", match: "/request-quote" },
+  { label: "Tracking Shipment", path: "/tracking-shipment", match: "/tracking-shipment" },
+  { label: "Terms & Conditions", path: "/terms-conditions", match: "/terms-conditions" },
+  { label: "Privacy Policy", path: "/privacy-policy", match: "/privacy-policy" },
+  { label: "404 Error Page", path: "/404", match: "/404" },
+];
 
-    const pagesMenu = [
-        { label: "Our Projects", path: "/projects", match: "/projects" },
-        { label: "Project Details", path: "/projects/details", match: "/projects" },
-        { label: "FAQ", path: "/faq", match: "/faq" },
-        { label: "Testimonials", path: "/testimonials", match: "/testimonials" },
-        { label: "Get A Quote", path: "/request-quote", match: "/request-quote" },
-        { label: "Tracking Shipment", path: "/tracking-shipment", match: "/tracking-shipment" },
-        { label: "Terms & Conditions", path: "/terms-conditions", match: "/terms-conditions" },
-        { label: "Privacy Policy", path: "/privacy-policy", match: "/privacy-policy" },
-        { label: "404 Error Page", path: "/404", match: "/404" },
-    ];
+
 
     const isPagesActive = pagesMenu.some((item) =>
         location.pathname.startsWith(item.match)
@@ -57,17 +62,15 @@ function Navitems() {
         "after:content-[''] after:absolute after:left-0 after:-bottom-[29px] after:h-[2px] after:w-full after:bg-[#F15A40] after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100";
 
     const linkClass = (path) =>
-        `${baseItem} ${underline} ${
-            location.pathname === path
-                ? "text-[#F15A40] after:scale-x-100"
-                : "text-gray-800 hover:text-[#F15A40]"
+        `${baseItem} ${underline} ${location.pathname === path
+            ? "text-[#F15A40] after:scale-x-100"
+            : "text-gray-800 hover:text-[#F15A40]"
         }`;
 
     const menuClass = (isActive = false) =>
-        `${baseItem} ${underline} ${
-            isActive
-                ? "text-[#F15A40] after:scale-x-100"
-                : "text-gray-800 hover:text-[#F15A40]"
+        `${baseItem} ${underline} ${isActive
+            ? "text-[#F15A40] after:scale-x-100"
+            : "text-gray-800 hover:text-[#F15A40]"
         }`;
 
 
@@ -103,18 +106,16 @@ function Navitems() {
                             return (
                                 <li
                                     key={item.path}
-                                    className={`border-b border-gray-200 ${
-                                        index === servicesMenu.length - 1 ? "border-b-0" : ""
-                                    }`}
+                                    className={`border-b border-gray-200 ${index === servicesMenu.length - 1 ? "border-b-0" : ""
+                                        }`}
                                 >
                                     <Link
                                         to={item.path}
                                         onClick={() => setIsServicesOpen(false)}
-                                        className={`block px-6 py-3 ${
-                                            isActive
-                                                ? "bg-black text-white hover:bg-black"
-                                                : "hover:bg-black hover:text-white"
-                                        }`}
+                                        className={`block px-6 py-3 ${isActive
+                                            ? "bg-black text-white hover:bg-black"
+                                            : "hover:bg-black hover:text-white"
+                                            }`}
                                     >
                                         {item.label}
                                     </Link>
@@ -145,31 +146,35 @@ function Navitems() {
                         }
                     `}
                 >
-                    <ul className="text-sm">
-                        {pagesMenu.map((item, index) => {
-                            const isActive = location.pathname.startsWith(item.match);
-                            return (
-                                <li
-                                    key={item.path}
-                                    className={`border-b border-gray-200 ${
-                                        index === pagesMenu.length - 1 ? "border-b-0" : ""
-                                    }`}
-                                >
-                                    <Link
-                                        to={item.path}
-                                        onClick={() => setIsPagesOpen(false)}
-                                        className={`block px-6 py-3 ${
-                                            isActive
-                                                ? "bg-black text-white hover:bg-black"
-                                                : "hover:bg-black hover:text-white"
-                                        }`}
-                                    >
-                                        {item.label}
-                                    </Link>
-                                </li>
-                            );
-                        })}
-                    </ul>
+                 <ul className="text-sm">
+  {pagesMenu.map((item, index) => {
+    const isActive = item.match
+      ? location.pathname === item.match
+      : false;
+
+    return (
+      <li
+        key={item.path}
+        className={`border-b border-gray-200 ${
+          index === pagesMenu.length - 1 ? "border-b-0" : ""
+        }`}
+      >
+        <Link
+          to={item.path}
+          onClick={() => setIsPagesOpen(false)}
+          className={`block px-6 py-3 ${
+            isActive
+              ? "bg-black text-white hover:bg-black"
+              : "hover:bg-black hover:text-white"
+          }`}
+        >
+          {item.label}
+        </Link>
+      </li>
+    );
+  })}
+</ul>
+
                 </div>
             </div>
 
@@ -204,18 +209,16 @@ function Navitems() {
                         ].map((item, index, arr) => (
                             <li
                                 key={item.path}
-                                className={`border-b border-gray-200 ${
-                                    index === arr.length - 1 ? "border-b-0" : ""
-                                }`}
+                                className={`border-b border-gray-200 ${index === arr.length - 1 ? "border-b-0" : ""
+                                    }`}
                             >
                                 <Link
                                     to={item.path}
                                     onClick={() => setIsBlogOpen(false)}
-                                    className={`block px-6 py-3 ${
-                                        item.active
-                                            ? "bg-black text-white hover:bg-black"
-                                            : "hover:bg-black hover:text-white"
-                                    }`}
+                                    className={`block px-6 py-3 ${item.active
+                                        ? "bg-black text-white hover:bg-black"
+                                        : "hover:bg-black hover:text-white"
+                                        }`}
                                 >
                                     {item.label}
                                 </Link>

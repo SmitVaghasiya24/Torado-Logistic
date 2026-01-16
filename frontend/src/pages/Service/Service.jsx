@@ -33,8 +33,8 @@ function Service() {
     return (
         <>
             <Breadcrumb title="Services" />
-      <div div className="px-3 xl:px-0">
-      
+            <div div className="px-3 xl:px-0">
+
 
                 <section className="pt-16">
                     <div className="wrapper">

@@ -1,6 +1,7 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "sonner";
+import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import Layout from './components/Layout';
 import GetQuote from './pages/GetQuote';
@@ -15,12 +16,16 @@ import Error from './pages/Page/Error';
 import PrivacyPolicy from './pages/Page/PrivacyPolicy';
 import TermsCondition from './pages/Page/Terms&Con';
 import Project from './pages/Project/Project';
+import ProjectDetails from './pages/Project/ProjectDetails';
+import AboutUs from './pages/AboutUs';
 
 function App() {
 
   return (
     <>
+   
       <BrowserRouter>
+       <ScrollToTop/>
         <Toaster
         richColors
         position="top-right"
@@ -43,6 +48,8 @@ function App() {
             <Route path='/privacy-policy'  element={<PrivacyPolicy />} />
             <Route path='/terms-conditions'  element={<TermsCondition />} />
             <Route path='/projects'  element={<Project />} />
+            <Route path='/project-details/:slug'  element={<ProjectDetails />} />
+            <Route path='/about'  element={<AboutUs />} />
           </Route>
         </Routes>
       </BrowserRouter>

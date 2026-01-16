@@ -91,3 +91,14 @@ export const getServicesUser = async () => {
 
     return rows?.[0] || [];
 };
+
+
+
+export const getServiceBySlug = async (slug) => {
+    const [rows] = await db.execute(
+        "CALL sp_get_service_by_slug(?)",
+        [slug]
+    );
+
+    return rows?.[0]?.[0] || null;
+};
